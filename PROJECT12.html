@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Image Generator</title>
+<style>
+  body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  #container {
+    text-align: center;
+  }
+  
+  #generatedImage {
+    max-width: 400px;
+    border-radius: 9px;
+    
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <h2>AI Image Generator</h2>
+  <img id="generatedImage" src="" alt="Generated Image">
+  <button onclick="generateImage()">Generate Image</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+<script>
+  async function generateImage() {
+    const model = await mobilenet.load();
+    const img = document.getElementById('generatedImage');
+    const result = await model.classify(img);
+    console.log(result);
+  }
+</script>
+
+</body>
+</html>
